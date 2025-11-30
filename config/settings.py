@@ -54,9 +54,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # config/settings.py
 
+# BASE DE DATOS
+
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres.yptybcvmwghyokpxlejf:xKT3GrV3rhju*CD@aws-1-us-east-2.pooler.supabase.com:6543/postgres',
+        default=os.environ.get('DATABASE_URL'),
         conn_max_age=600
     )
 }
