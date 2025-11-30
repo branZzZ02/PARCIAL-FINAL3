@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-lg">
+            <div class="card-header bg-black text-white text-center py-3">
+                <h4 class="m-0">Acceso Seguro</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Usuario</label>
+                        {{ form.username }} 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        {{ form.password }}
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary">Ingresar al Sistema</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('input').forEach(i => i.classList.add('form-control'));
+</script>
+{% endblock %}

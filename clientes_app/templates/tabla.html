@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-white">Base de Datos</h2>
+    <a href="{% url 'nuevo_cliente' %}" class="btn btn-success">+ Nuevo Registro</a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <table class="table table-dark table-hover mb-0">
+            <thead>
+                <tr class="text-uppercase text-secondary small">
+                    <th>Documento</th>
+                    <th>Nombres</th>
+                    <th>Correo</th>
+                    <th>Ubicación</th>
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in clientes %}
+                <tr>
+                    <td class="fw-bold">{{ c.documento }}</td>
+                    <td>{{ c.nombres }} {{ c.apellidos }}</td>
+                    <td>{{ c.correo }}</td>
+                    <td>{{ c.ubicacion }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'editar_cliente' c.id %}" class="btn btn-warning btn-sm text-dark">Editar</a>
+                        <a href="{% url 'eliminar_cliente' c.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Confirmar eliminación?')">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center py-5 text-muted">No hay información registrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="mt-3">
+    <a href="{% url 'panel_principal' %}" class="text-decoration-none text-secondary">&larr; Volver al Panel</a>
+</div>
+{% endblock %}
